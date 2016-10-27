@@ -1,3 +1,38 @@
-<h1>
-  {{title}}
-</h1>
+<md-sidenav-layout id="app-layout">
+  <md-sidenav id="app-sidenav" #sideMenu [mode]="getMode(sideMenu)">
+    <md-toolbar color="primary">
+      <span>Sidenav</span>
+    </md-toolbar>
+    <md-nav-list>
+      <template ngFor let-route [ngForOf]="routes">
+        <a md-list-item *ngIf="route.path !== ''"
+          [routerLink]="'/' + route.path" routerLinkActive="active"
+          (click)="sideMenu.mode !== 'side' && sideMenu.close()">{{route.path}}</a>
+      </template>
+    </md-nav-list>
+  </md-sidenav>
+  <div id="app-content">
+    <md-toolbar color="primary" [ngClass]="{'st-full': (sideMenu.mode !== 'side')}">
+      <button md-icon-button *ngIf="sideMenu.mode !== 'side'" (click)="sideMenu.open()">
+        <md-icon>menu</md-icon>
+      </button>
+      <span>Module</span>
+      <span style="flex: 1;"></span>
+      <button md-icon-button [md-menu-trigger-for]="appMenu">
+        <md-icon>more_vert</md-icon>
+      </button>
+      <md-menu #appMenu x-position="before">
+        <button md-menu-item> Refresh </button>
+        <button md-menu-item> Settings </button>
+        <button md-menu-item> Help </button>
+        <button md-menu-item disabled> Sign Out </button>
+      </md-menu>
+    </md-toolbar>
+    <main [ngClass]="{'st-thin': isSmall()}">
+      <h1>{{title}}</h1>
+      <button md-button>Test</button>
+      <router-outlet></router-outlet>
+      <span>abcd</span>
+    </main>
+  </div>
+</md-sidenav-layout>

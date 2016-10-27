@@ -1,0 +1,52 @@
+:host{
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+#app-layout{
+  height: 100%;
+}
+
+#app-sidenav{
+  width: 240px;
+}
+
+#app-content{
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+
+  md-toolbar{
+    padding-right: 0px;
+
+    &.st-full{
+      padding-left: 0px;
+    }
+  }
+
+  main{
+    padding: 16px;
+    flex: 1;
+    height: 100%;
+    overflow-y: scroll;
+
+    &.st-thin{
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+  }
+}
+
+md-list-item{
+  [md-button]{
+    width: 100%;
+
+    text-align: left;
+    border-radius: 0px;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+}
